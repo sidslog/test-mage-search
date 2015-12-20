@@ -8,33 +8,38 @@
 
 #import "ImagesModel.h"
 #import "ImageProvider.h"
+#import "ImageCache.h"
+#import "ImageProviderDTO.h"
 
 @interface ImagesModel ()
 
 @property (nonatomic, strong) id<ImageProvider> provider;
+@property (nonatomic, strong) id<ImageCache> cache;
 @property (nonatomic, copy) void (^didLoadImages)(ImagesModel *model, NSError *error);
 
 @property (nonatomic, assign) BOOL isLoading;
-@property (nonatomic, assign) NSInteger startIndex;
-@property (nonatomic, assign) NSInteger totalResuts;
 
 @end
 
 @implementation ImagesModel
 
-- (instancetype) initWithImageProvider: (id<ImageProvider>) provider didLoadImages: (void (^)(ImagesModel *model, NSError *error))didLoadImages {
+- (instancetype) initWithImageProvider: (id<ImageProvider>) provider cache:(id<ImageCache>) cache didLoadImages: (void (^)(ImagesModel *model, NSError *error))didLoadImages {
     if (self = [super init]) {
         self.provider = provider;
+        self.cache = cache;
         self.didLoadImages = didLoadImages;
         self.isLoading = NO;
-        self.startIndex = 1;
-        _items = @[];
+        _items = [self.cache allImages];
     }
     return self;
 }
 
 - (BOOL) canLoadMoreImages {
-    return self.items.count < self.totalResuts;
+    return self.items.count < self.cache.totalResults;
+}
+
+- (void) setItems:(NSArray *)items {
+    _items = items;
 }
 
 - (void) loadNextPage {
@@ -45,24 +50,52 @@
     self.isLoading = YES;
     __weak typeof(self) weakSelf = self;
     
-    [self.provider loadImageDataWithStartIndex:self.startIndex success:^(NSArray *resultArray, NSInteger newStartIndex, NSInteger totalResults) {
+    [self.provider loadImageDataWithStartIndex:self.cache.startIndex withCompletion:^(ImageProviderDTO *dto, NSError *error) {
         if (weakSelf) {
-            [weakSelf finishWithData:resultArray newStartIndex:newStartIndex newTotalResults:totalResults];
-        }
-    } errorBlock:^(NSError *error) {
-        if (weakSelf) {
-            [weakSelf finishWithError:error];
+            if (!error) {
+                [weakSelf finishWithData:dto];
+            } else {
+                [weakSelf finishWithError:error];
+            }
         }
     }];
-    
 }
 
-- (void) finishWithData: (NSArray *) newItems newStartIndex: (NSInteger) newStartIndex newTotalResults: (NSInteger) newTotalResults {
-    self.startIndex = newStartIndex;
-    self.totalResuts = newTotalResults;
-    _items = [self.items arrayByAddingObjectsFromArray:newItems];
+- (void) reload {
+    [self.provider cancelLoading];
     self.isLoading = NO;
+    __weak typeof(self) weakSelf = self;
+    [self.cache clearCacheWithCompletion:^(NSError *error) {
+        if (weakSelf) {
+            if (!error) {
+                [weakSelf finishWithClearData];
+            } else {
+                [weakSelf finishWithError:error];
+            }
+        }
+    }];
+}
+
+- (void) finishWithClearData {
+    self.isLoading = NO;
+    self.items = @[];
     self.didLoadImages(self, nil);
+    [self loadNextPage];
+}
+
+- (void) finishWithData: (ImageProviderDTO *) imageProviderDTO {
+    __weak typeof(self) weakSelf = self;
+    [self.cache addImages:imageProviderDTO withCompletion:^(NSError *error) {
+        if (weakSelf) {
+            if (!error) {
+                weakSelf.items = [weakSelf.cache allImages];
+                weakSelf.isLoading = NO;
+                weakSelf.didLoadImages(weakSelf, nil);
+            } else {
+                [weakSelf finishWithError:error];
+            }
+        }
+    }];
 }
 
 - (void) finishWithError: (NSError *) error {

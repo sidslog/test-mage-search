@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		979533EB1C25FD2500F8233E /* GSAClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 979533EA1C25FD2500F8233E /* GSAClient.m */; };
+		979533EB1C25FD2500F8233E /* GoogleSearchImageProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 979533EA1C25FD2500F8233E /* GoogleSearchImageProvider.m */; };
 		979533F01C260E2700F8233E /* ImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 979533EF1C260E2700F8233E /* ImageTableViewCell.m */; };
-		979533F71C26E7C300F8233E /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 979533F61C26E7C300F8233E /* ImageData.m */; };
 		979533FA1C26EFA100F8233E /* ImagesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 979533F91C26EFA100F8233E /* ImagesModel.m */; };
+		979534061C27290400F8233E /* ImagesDB.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 979534041C27290400F8233E /* ImagesDB.xcdatamodeld */; };
+		979534121C272B5700F8233E /* ImageData+CoreDataProperties.m in Sources */ = {isa = PBXBuildFile; fileRef = 9795340F1C272B5700F8233E /* ImageData+CoreDataProperties.m */; };
+		979534131C272B5700F8233E /* ImageData.m in Sources */ = {isa = PBXBuildFile; fileRef = 979534111C272B5700F8233E /* ImageData.m */; };
+		979534171C272BE500F8233E /* CoreDataImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 979534161C272BE500F8233E /* CoreDataImageCache.m */; };
+		9795341D1C273CD000F8233E /* ImageProviderDTO.m in Sources */ = {isa = PBXBuildFile; fileRef = 9795341C1C273CD000F8233E /* ImageProviderDTO.m */; };
 		97BD12581C25F2B3003C9D05 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BD12571C25F2B3003C9D05 /* main.m */; };
 		97BD125B1C25F2B3003C9D05 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BD125A1C25F2B3003C9D05 /* AppDelegate.m */; };
 		97BD125E1C25F2B3003C9D05 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 97BD125D1C25F2B3003C9D05 /* ViewController.m */; };
@@ -23,15 +27,23 @@
 /* Begin PBXFileReference section */
 		6C409455C541396896DD1BD7 /* libPods-test-image-search.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-test-image-search.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8C0925BF57E73AE66C616671 /* Pods-test-image-search.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-test-image-search.debug.xcconfig"; path = "Pods/Target Support Files/Pods-test-image-search/Pods-test-image-search.debug.xcconfig"; sourceTree = "<group>"; };
-		979533E91C25FD2500F8233E /* GSAClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GSAClient.h; sourceTree = "<group>"; };
-		979533EA1C25FD2500F8233E /* GSAClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSAClient.m; sourceTree = "<group>"; };
+		979533E91C25FD2500F8233E /* GoogleSearchImageProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleSearchImageProvider.h; sourceTree = "<group>"; };
+		979533EA1C25FD2500F8233E /* GoogleSearchImageProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleSearchImageProvider.m; sourceTree = "<group>"; };
 		979533EE1C260E2700F8233E /* ImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageTableViewCell.h; sourceTree = "<group>"; };
 		979533EF1C260E2700F8233E /* ImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageTableViewCell.m; sourceTree = "<group>"; };
 		979533F21C26E70C00F8233E /* ImageProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProvider.h; sourceTree = "<group>"; };
-		979533F51C26E7C300F8233E /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
-		979533F61C26E7C300F8233E /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
 		979533F81C26EFA100F8233E /* ImagesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagesModel.h; sourceTree = "<group>"; };
 		979533F91C26EFA100F8233E /* ImagesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagesModel.m; sourceTree = "<group>"; };
+		979534051C27290400F8233E /* ImagesDB.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ImagesDB.xcdatamodel; sourceTree = "<group>"; };
+		9795340E1C272B5700F8233E /* ImageData+CoreDataProperties.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ImageData+CoreDataProperties.h"; sourceTree = "<group>"; };
+		9795340F1C272B5700F8233E /* ImageData+CoreDataProperties.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ImageData+CoreDataProperties.m"; sourceTree = "<group>"; };
+		979534101C272B5700F8233E /* ImageData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageData.h; sourceTree = "<group>"; };
+		979534111C272B5700F8233E /* ImageData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageData.m; sourceTree = "<group>"; };
+		979534151C272BE500F8233E /* CoreDataImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataImageCache.h; sourceTree = "<group>"; };
+		979534161C272BE500F8233E /* CoreDataImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataImageCache.m; sourceTree = "<group>"; };
+		979534181C27330F00F8233E /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
+		9795341B1C273CD000F8233E /* ImageProviderDTO.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageProviderDTO.h; sourceTree = "<group>"; };
+		9795341C1C273CD000F8233E /* ImageProviderDTO.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageProviderDTO.m; sourceTree = "<group>"; };
 		97BD12531C25F2B3003C9D05 /* test-image-search.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "test-image-search.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		97BD12571C25F2B3003C9D05 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		97BD12591C25F2B3003C9D05 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -79,8 +91,6 @@
 		979533FC1C271A2A00F8233E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				979533F51C26E7C300F8233E /* ImageData.h */,
-				979533F61C26E7C300F8233E /* ImageData.m */,
 				979533F81C26EFA100F8233E /* ImagesModel.h */,
 				979533F91C26EFA100F8233E /* ImagesModel.m */,
 			);
@@ -90,8 +100,8 @@
 		979533FD1C271A4400F8233E /* Service */ = {
 			isa = PBXGroup;
 			children = (
-				979533F21C26E70C00F8233E /* ImageProvider.h */,
-				979533FE1C271A5B00F8233E /* GoogleSearch */,
+				979534001C27278000F8233E /* ImageCache */,
+				979533FF1C27277600F8233E /* ImageLoading */,
 			);
 			name = Service;
 			sourceTree = "<group>";
@@ -99,10 +109,52 @@
 		979533FE1C271A5B00F8233E /* GoogleSearch */ = {
 			isa = PBXGroup;
 			children = (
-				979533E91C25FD2500F8233E /* GSAClient.h */,
-				979533EA1C25FD2500F8233E /* GSAClient.m */,
+				979533E91C25FD2500F8233E /* GoogleSearchImageProvider.h */,
+				979533EA1C25FD2500F8233E /* GoogleSearchImageProvider.m */,
 			);
 			name = GoogleSearch;
+			sourceTree = "<group>";
+		};
+		979533FF1C27277600F8233E /* ImageLoading */ = {
+			isa = PBXGroup;
+			children = (
+				979533F21C26E70C00F8233E /* ImageProvider.h */,
+				9795341B1C273CD000F8233E /* ImageProviderDTO.h */,
+				9795341C1C273CD000F8233E /* ImageProviderDTO.m */,
+				979533FE1C271A5B00F8233E /* GoogleSearch */,
+			);
+			name = ImageLoading;
+			sourceTree = "<group>";
+		};
+		979534001C27278000F8233E /* ImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				979534181C27330F00F8233E /* ImageCache.h */,
+				979534141C272BC000F8233E /* CoreDataImageCache */,
+			);
+			name = ImageCache;
+			sourceTree = "<group>";
+		};
+		9795340D1C2729A800F8233E /* ModelObjects */ = {
+			isa = PBXGroup;
+			children = (
+				9795340E1C272B5700F8233E /* ImageData+CoreDataProperties.h */,
+				9795340F1C272B5700F8233E /* ImageData+CoreDataProperties.m */,
+				979534101C272B5700F8233E /* ImageData.h */,
+				979534111C272B5700F8233E /* ImageData.m */,
+			);
+			name = ModelObjects;
+			sourceTree = "<group>";
+		};
+		979534141C272BC000F8233E /* CoreDataImageCache */ = {
+			isa = PBXGroup;
+			children = (
+				9795340D1C2729A800F8233E /* ModelObjects */,
+				979534151C272BE500F8233E /* CoreDataImageCache.h */,
+				979534161C272BE500F8233E /* CoreDataImageCache.m */,
+				979534041C27290400F8233E /* ImagesDB.xcdatamodeld */,
+			);
+			name = CoreDataImageCache;
 			sourceTree = "<group>";
 		};
 		97BD124A1C25F2B3003C9D05 = {
@@ -279,12 +331,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				979533FA1C26EFA100F8233E /* ImagesModel.m in Sources */,
+				9795341D1C273CD000F8233E /* ImageProviderDTO.m in Sources */,
 				97BD125E1C25F2B3003C9D05 /* ViewController.m in Sources */,
 				979533F01C260E2700F8233E /* ImageTableViewCell.m in Sources */,
+				979534121C272B5700F8233E /* ImageData+CoreDataProperties.m in Sources */,
 				97BD125B1C25F2B3003C9D05 /* AppDelegate.m in Sources */,
 				97BD12581C25F2B3003C9D05 /* main.m in Sources */,
-				979533EB1C25FD2500F8233E /* GSAClient.m in Sources */,
-				979533F71C26E7C300F8233E /* ImageData.m in Sources */,
+				979533EB1C25FD2500F8233E /* GoogleSearchImageProvider.m in Sources */,
+				979534061C27290400F8233E /* ImagesDB.xcdatamodeld in Sources */,
+				979534171C272BE500F8233E /* CoreDataImageCache.m in Sources */,
+				979534131C272B5700F8233E /* ImageData.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +494,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		979534041C27290400F8233E /* ImagesDB.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				979534051C27290400F8233E /* ImagesDB.xcdatamodel */,
+			);
+			currentVersion = 979534051C27290400F8233E /* ImagesDB.xcdatamodel */;
+			path = ImagesDB.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 97BD124B1C25F2B3003C9D05 /* Project object */;
 }

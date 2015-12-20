@@ -9,13 +9,15 @@
 #import <Foundation/Foundation.h>
 
 @protocol ImageProvider;
+@protocol ImageCache;
 
 @interface ImagesModel : NSObject
 
 @property (readonly) NSArray *items;
 @property (readonly) BOOL canLoadMoreImages;
 
-- (instancetype) initWithImageProvider: (id<ImageProvider>) provider didLoadImages: (void (^)(ImagesModel *model, NSError *error))didLoadImages;
+- (instancetype) initWithImageProvider: (id<ImageProvider>) provider cache:(id<ImageCache>) cache didLoadImages: (void (^)(ImagesModel *model, NSError *error))didLoadImages;
 - (void) loadNextPage;
+- (void) reload;
 
 @end

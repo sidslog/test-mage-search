@@ -8,7 +8,8 @@
 
 #import "ViewController.h"
 #import <SDWebImage/UIImageView+WebCache.h>
-#import "GSAClient.h"
+#import "GoogleSearchImageProvider.h"
+#import "CoreDataImageCache.h"
 #import "ImageTableViewCell.h"
 #import "ImagesModel.h"
 #import "ImageData.h"
@@ -27,8 +28,11 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 416;
 
+    // setup model
     __weak typeof(self) weakSelf = self;
-    self.model = [[ImagesModel alloc] initWithImageProvider:[GSAClient sharedInstance] didLoadImages:^(ImagesModel *model, NSError *error) {
+    id<ImageProvider> provider = [[GoogleSearchImageProvider alloc] init];
+    id<ImageCache> cache = [[CoreDataImageCache alloc] init];
+    self.model = [[ImagesModel alloc] initWithImageProvider:provider cache:cache didLoadImages:^(ImagesModel *model, NSError *error) {
         if (weakSelf) {
             if (!error) {
                 [weakSelf.tableView reloadData];
@@ -37,7 +41,13 @@
             }
         }
     }];
-    [self.model loadNextPage];
+    if (self.model.items.count == 0) {
+        [self.model loadNextPage];
+    }
+    
+    // setup navigation bar
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemRefresh target:self action:@selector(onRefresh:)];
+    self.navigationItem.rightBarButtonItem = item;
 }
 
 #pragma mark - table view datasource
@@ -70,10 +80,16 @@
 
 - (void) configureImageCell: (ImageTableViewCell *) cell atIndexPath: (NSIndexPath *) indexPath {
     ImageData *data = self.model.items[indexPath.row];
-    [cell.pictureView sd_setImageWithURL: data.imageURL];
+    [cell.pictureView sd_setImageWithURL: [NSURL URLWithString: data.urlString]];
     cell.titleView.text = data.title;
-    cell.heightConstraint.constant = ceilf(self.tableView.bounds.size.width * data.height / data.width);
+    cell.heightConstraint.constant = ceilf(self.tableView.bounds.size.width * [data.height floatValue]/ [data.width floatValue]);
     [cell layoutIfNeeded];
+}
+
+#pragma mark - action 
+
+- (void) onRefresh: (id) sender {
+    [self.model reload];
 }
 
 #pragma mark - error handling

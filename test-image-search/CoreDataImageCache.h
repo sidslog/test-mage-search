@@ -1,5 +1,5 @@
 //
-//  GSAClient.h
+//  CoreDataImageCache.h
 //  test-image-search
 //
 //  Created by Sergey Sedov on 12/20/15.
@@ -7,10 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ImageProvider.h"
+#import "ImageCache.h"
 
-@interface GSAClient : NSObject<ImageProvider>
-
-+ (instancetype) sharedInstance;
+@interface CoreDataImageCache : NSObject<ImageCache>
 
 @end

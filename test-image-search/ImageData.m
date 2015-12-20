@@ -10,13 +10,6 @@
 
 @implementation ImageData
 
-+ (instancetype) dataWithTitle: (NSString *) title url: (NSURL *) url width: (CGFloat) width height: (CGFloat) height {
-    ImageData *data = [ImageData new];
-    data.title = title;
-    data.imageURL = url;
-    data.width = width;
-    data.height = height;
-    return data;
-}
+// Insert code here to add functionality to your managed object subclass
 
 @end

@@ -11,14 +11,13 @@
 static NSString *const IMAGE_RPOVIDER_ERROR_DOMAIN = @"com.sidslog.testimagesearch.gsapi.error";
 static NSInteger const IMAGE_RPOVIDER_WRONG_FORMAT_ERROR_CODE = 0;
 
+@class ImageProviderDTO;
 
-// array of ImageData
-typedef void (^ImageProviderSuccessBlock)(NSArray *resultArray, NSInteger newStartIndex, NSInteger totalResults);
-typedef void (^ImageProviderErrorBlock)(NSError *error);
-
+typedef void (^ImageProviderResultBlock)(ImageProviderDTO *dto, NSError *error);
 
 @protocol ImageProvider <NSObject>
 
-- (void) loadImageDataWithStartIndex: (NSInteger) startIndex success: (ImageProviderSuccessBlock) successBlock errorBlock: (ImageProviderErrorBlock) errorBlock;
+- (void) loadImageDataWithStartIndex: (NSInteger) startIndex withCompletion: (ImageProviderResultBlock) completion;
+- (void) cancelLoading;
 
 @end

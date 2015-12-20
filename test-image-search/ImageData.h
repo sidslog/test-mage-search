@@ -7,15 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
-@import CoreGraphics;
+#import <CoreData/CoreData.h>
 
-@interface ImageData : NSObject
+NS_ASSUME_NONNULL_BEGIN
 
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, strong) NSURL *imageURL;
-@property (nonatomic, assign) CGFloat width;
-@property (nonatomic, assign) CGFloat height;
+@interface ImageData : NSManagedObject
 
-+ (instancetype) dataWithTitle: (NSString *) title url: (NSURL *) url width: (CGFloat) width height: (CGFloat) height;
+// Insert code here to declare functionality of your managed object subclass
 
 @end
+
+NS_ASSUME_NONNULL_END
+
+#import "ImageData+CoreDataProperties.h"
